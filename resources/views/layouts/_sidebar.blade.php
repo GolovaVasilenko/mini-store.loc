@@ -38,15 +38,39 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.products') }}"><i class="fa fa-product-hunt"></i> Product List</a></li>
-                    <li><a href="{{ route('admin.brands') }}"><i class="fa fa-sticky-note"></i> Brands</a></li>
-                    <li><a href="{{ route('admin.categories') }}"><i class="fa fa-navicon"></i> Categories</a></li>
+                    <li><a href="{{ route('admin.products') }}"><i class="fa fa-cubes"></i> Products</a></li>
+                    <li><a href="{{ route('admin.brands') }}"><i class="fa fa-star"></i> Brands</a></li>
+                    <li><a href="{{ route('admin.categories') }}"><i class="fa fa-folder-open"></i> Categories</a></li>
                     <li><a href="{{ route('admin.attributes') }}"><i class="fa fa-navicon"></i> Atributes</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Users</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-user"></i> User list</a></li>
+                    <li><a href="#"><i class="fa fa-registered"></i> Roles</a></li>
+                    <li><a href="#"><i class="fa fa-lock"></i> Permissions</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa-glide-g"></i>
+                    <i class="fa fa-picture-o"></i>
+                    <span>Banners</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-comments"></i>
+                    <span>Comments</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-gears"></i>
                     <span>Settings</span>
                 </a>
             </li>
