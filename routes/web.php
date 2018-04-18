@@ -15,6 +15,17 @@ Route::get('/', 'PageController@home')->name('home');
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'secret', 'namespace' => 'Admin', 'middleware' => ['web', 'auth']], function() {
+
     Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::get('/products', 'ProductController@index')->name('admin.products');
+
+    Route::get('/brands', 'BrandController@index')->name('admin.brands');
+
+    Route::get('/categories', 'CategoryController@index')->name('admin.categories');
+
+    Route::get('/attributes', 'AttributeController@index')->name('admin.attributes');
 });
+
+Route::get('/profile', 'ProfileController@index', ['middleware' => ['web', 'auth']])->name('profile');
