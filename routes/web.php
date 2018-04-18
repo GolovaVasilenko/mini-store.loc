@@ -26,6 +26,8 @@ Route::group(['prefix' => 'secret', 'namespace' => 'Admin', 'middleware' => ['we
     Route::get('/categories', 'CategoryController@index')->name('admin.categories');
 
     Route::get('/attributes', 'AttributeController@index')->name('admin.attributes');
+
+    Route::get('/settings', 'SettingsController@index')->name('admin.settings');
 });
 
 Route::get('/profile', 'ProfileController@index', ['middleware' => ['web', 'auth']])->name('profile');
