@@ -69,7 +69,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.settings') }}">
                     <i class="fa fa-gears"></i>
                     <span>Settings</span>
                 </a>
