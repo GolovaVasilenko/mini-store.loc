@@ -1,7 +1,17 @@
-form.delete {
+.content-wrapper {
+    padding: 0 10px;
+}
+.manage-block {
+    padding: 10px;
+}
+form.delete, .delete-form {
     display: inline-block;
 }
 form.delete button {
+    border: none;
+    background-color: transparent;
+}
+.delete-btn {
     border: none;
     background-color: transparent;
 }

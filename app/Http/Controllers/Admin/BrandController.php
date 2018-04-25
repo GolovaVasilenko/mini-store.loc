@@ -15,8 +15,10 @@ class BrandController extends Controller
      */
     public function index()
     {
+        $brands = Brands::paginate(20);
+
         return view("admin.brands.index", [
-            "brands" => Brands::all()
+            "brands" => $brands
         ]);
     }
 
@@ -57,7 +59,11 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        //
+        $brand = Brands::findOrFail($id);
+
+        return view('admin.brands.show', [
+            'brand' => $brand
+        ]);
     }
 
     /**
@@ -68,29 +74,40 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brand = Brands::findOrFail($id);
+
+        return view('admin.brands.edit', [
+            'brand' => $brand
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $brand = Brands::findOrFail($id);
+
+        $brand->update($request->all());
+
+        $brand->uploadImage($request->file('image'));
+
+        return redirect()->route('brands.show', $id);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        $brand = Brands::findOrFail($id);
+
+        $brand->delete();
+
+        return redirect()->route('brands.index');
     }
 }

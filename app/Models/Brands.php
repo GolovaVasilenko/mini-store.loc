@@ -27,7 +27,9 @@ class Brands extends Model
     public function uploadImage($image)
     {
         if($image == null) return;
+
         $this->removeImage();
+
         $fileName = str_random(10) . '.' . $image->extension();
         $image->storeAs('uploads', $fileName);
         $this->image = $fileName;
@@ -44,7 +46,7 @@ class Brands extends Model
 
     public function removeImage()
     {
-        if($this->aimage != null){
+        if($this->image != null){
             Storage::delete('uploads/'. $this->image);
         }
     }
