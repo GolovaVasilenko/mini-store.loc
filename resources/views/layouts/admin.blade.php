@@ -200,8 +200,12 @@
     <!-- =============================================== -->
 
     <!-- Content Wrapper. Contains page content -->
-
+    <div class="content-wrapper">
+    @if ($errors->any())
+        @include('admin._notice')
+    @endif
     @yield('content')
+    </div>
     <!-- /.content-wrapper -->
 
     <footer class="main-footer">

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="content-wrapper">
+
     <section class="content-header">
         <h1>
             Data Tables
@@ -107,6 +107,5 @@
         </div>
 
     </section>
-</div>
 
 @endsection
