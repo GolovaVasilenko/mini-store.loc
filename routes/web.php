@@ -21,7 +21,7 @@ Route::group(['prefix' => 'secret', 'namespace' => 'Admin', 'middleware' => ['we
 
     Route::get('/products', 'ProductController@index')->name('admin.products');
 
-    Route::get('/brands', 'BrandController@index')->name('admin.brands');
+    Route::resource('/brands', 'BrandController');
 
     Route::get('/categories', 'CategoryController@index')->name('admin.categories');
 

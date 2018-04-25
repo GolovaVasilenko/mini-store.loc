@@ -39,7 +39,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('admin.products') }}"><i class="fa fa-cubes"></i> Products</a></li>
-                    <li><a href="{{ route('admin.brands') }}"><i class="fa fa-star"></i> Brands</a></li>
+                    <li><a href="{{ url('/secret/brands') }}"><i class="fa fa-star"></i> Brands</a></li>
                     <li><a href="{{ route('admin.categories') }}"><i class="fa fa-folder-open"></i> Categories</a></li>
                     <li><a href="{{ route('admin.attributes') }}"><i class="fa fa-navicon"></i> Atributes</a></li>
                 </ul>
