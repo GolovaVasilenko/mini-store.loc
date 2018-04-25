@@ -37,7 +37,7 @@ class Brands extends Model
     public function getImage()
     {
         if(null == $this->image){
-            return '/images/no-image.png';
+            return '/images/no-image.jpg';
         }
         return '/uploads/' . $this->image;
     }

@@ -28,36 +28,45 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>URL</th>
+                                <th>Image</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($brands as $brand)
                             <tr>
-                                <td>Gecko</td>
-                                <td>Mozilla 1.6</td>
-                                <td>Win 95+ / OSX.1+</td>
-                                <td>1.6</td>
-                                <td>A</td>
+                                <td>{{ $brand->id }}</td>
+                                <td>{{ $brand->name }}</td>
+                                <td>{{ $brand->slug }}</td>
+                                <td>
+                                    <div class="img-container">
+                                        <img src="{{ $brand->getImage() }}" alt=""/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{ route('brands.edit', $brand->id) }}"><i class="fa fa-edit"></i></a>&nbsp;
+                                    <a href="{{ route('brands.show', $brand->id) }}"><i class="fa fa-eye"></i></a>&nbsp;
+                                    {{ Form::open(['route' => ['brands.destroy', $brand->id],
+                                'method' => 'delete', 'class' => 'delete']) }}
+                                    <button type="submit" onclick="return confirm('Вы уверены что хотите удалить елемент?')">
+                                        <i class="fa fa-remove"></i>
+                                    </button>
+
+                                    {{ Form::close() }}
+                                </td>
                             </tr>
-                            <tr>
-                                <td>Gecko</td>
-                                <td>Mozilla 1.7</td>
-                                <td>Win 98+ / OSX.1+</td>
-                                <td>1.7</td>
-                                <td>A</td>
-                            </tr>
+                            @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>URL</th>
+                                <th>Image</th>
+                                <th>Actions</th>
                             </tr>
                             </tfoot>
                         </table>

@@ -1,0 +1,18 @@
+form.delete {
+    display: inline-block;
+}
+form.delete button {
+    border: none;
+    background-color: transparent;
+}
+form.delete button .fa {
+    color: red;
+}
+.img-container {
+    width: 100px;
+}
+.img-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}

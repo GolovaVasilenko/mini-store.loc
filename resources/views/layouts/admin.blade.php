@@ -20,7 +20,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('admin/css/skins/_all-skins.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('admin/css/custom.css') }}" >
     <!-- jQuery 3 -->
     <script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>
 

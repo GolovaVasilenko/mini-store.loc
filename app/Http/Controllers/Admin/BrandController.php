@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Brands;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,7 @@ class BrandController extends Controller
     public function index()
     {
         return view("admin.brands.index", [
-            "brands" => ''
+            "brands" => Brands::all()
         ]);
     }
 
@@ -40,7 +41,12 @@ class BrandController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:100'
         ]);
-        dd($request->all());
+
+        $brand = Brands::create($request->all());
+
+        $brand->uploadImage($request->file('image'));
+
+        return redirect()->route("brands.index");
     }
 
     /**

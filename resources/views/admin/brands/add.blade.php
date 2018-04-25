@@ -23,7 +23,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                        <div class="block-form">
-                          {!! Form::open(['route' => 'brands.store']) !!}
+                          {!! Form::open(['route' => 'brands.store', 'files' => true]) !!}
                                <div class="box-body">
                                    <div class="form-group">
                                        {!! Form::label('name', 'Brand Name') !!}
