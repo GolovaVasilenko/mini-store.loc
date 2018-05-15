@@ -8,11 +8,11 @@ class Settings extends Model
 {
     public const STRING_TYPE = 'string';
     public const IMAGE_TYPE = 'image';
-    public const MULTIPLE_TYPE = 'multiple';
+    public const MULTIPLE_TYPE = 'list';
 
     protected $fillable = ['name', 'key', 'type'];
 
-    public function getTypeList()
+    public static function getTypeList()
     {
         return [
           self::STRING_TYPE,
@@ -26,7 +26,12 @@ class Settings extends Model
         $setting = new self();
         $setting->fill($fields);
 
-        //TO DO Insert Value
+        if($setting->isMultipleType()){
+            $setting->value = serialize($fields['value']);
+        }
+        else {
+            $setting->value = $fields['value'];
+        }
 
         $setting->save();
 
