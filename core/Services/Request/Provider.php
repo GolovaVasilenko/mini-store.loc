@@ -24,7 +24,8 @@ class Provider extends AbstractServiceProvider
     {
        $this->container[$this->name] = function($c) {
            $request = new Request();
-
+           $request->setMethod($_SERVER['REQUEST_METHOD']);
+           $request->setUri(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
            return $request;
        };
     }
