@@ -15,7 +15,7 @@ $container = new Container();
 $app = App::geiInstance($container);
 
 try {
-
+    $app->start();
 }
 catch (\Exception $e) {
     echo $e->getMessage();

@@ -4,6 +4,8 @@ if(!session_status()) {
     session_start();
 }
 
-require_once CONFIG_DIR . '/init.php';
+require_once __DIR__ . '/../config/init.php';
 
-require_once CORE_DIR . '/bootstrap.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+require_once __DIR__ . '/../core/bootstrap.php';
