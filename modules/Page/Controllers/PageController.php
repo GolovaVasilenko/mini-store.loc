@@ -5,8 +5,8 @@ namespace Modules\Page\Controllers;
 
 class PageController
 {
-    public function indexAction()
+    public function index()
     {
-        return "Class Page index action";
+        echo "Class Page index action";
     }
 }

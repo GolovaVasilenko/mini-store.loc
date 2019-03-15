@@ -2,11 +2,6 @@
 
 namespace Core\Application;
 
-use Acclimate\Container\ContainerAcclimator;
-use Acclimate\Container\CompositeContainer;
-use DI\ContainerBuilder;
-use Core\Components\Router\Router;
-use Pimple\Container;
 
 class App
 {
@@ -25,6 +20,8 @@ class App
         self::$container = $container;
 
         $this->setServiceProviders($container);
+
+
     }
 
     /**
@@ -66,6 +63,9 @@ class App
 
     public function start()
     {
+        $this->request = self::$container->make('request');
+        $this->request->setMethod($_SERVER["REQUEST_METHOD"]);
+        $this->request->setUri($_SERVER['REQUEST_URI']);
 
         $this->dispatch();
 
@@ -76,16 +76,15 @@ class App
 
     private function dispatch()
     {
-        $request = self::$container->make('request');
-        $httpMethod = $request->getMethod();
-        $uri = $request->getUriString();
+        $uri = $this->request->getUriString();
 
         if (false !== $pos = strpos($uri, '?')) {
             $uri = substr($uri, 0, $pos);
         }
         $uri = rawurldecode($uri);
 
-        $routeInfo = self::$container->make('routes')->dispatch($httpMethod, $uri);
+        $routeInfo = self::$container->make('routes')->dispatch($this->request->getMethod(), $uri);
+
         switch ($routeInfo[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
                 throw new \Exception("404 Not Found");
