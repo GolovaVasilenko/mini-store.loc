@@ -12,7 +12,6 @@ $request->getPost()->set('foo', 'bar');
 
 namespace Core\Services\Request;
 
-
 use Core\Services\AbstractServiceProvider;
 use Zend\Http\Request;
 
@@ -22,11 +21,6 @@ class Provider extends AbstractServiceProvider
 
     public function init()
     {
-       $this->container[$this->name] = function($c) {
-           $request = new Request();
-           $request->setMethod($_SERVER['REQUEST_METHOD']);
-           $request->setUri(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-           return $request;
-       };
+        $this->container->set($this->name , \DI\create(Request::class));
     }
 }

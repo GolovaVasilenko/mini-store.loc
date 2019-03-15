@@ -20,7 +20,7 @@ class App
      * App constructor.
      * @param Container $container
      */
-    private function __construct(Container $container)
+    private function __construct($container)
     {
         self::$container = $container;
 
@@ -31,7 +31,7 @@ class App
      * @param Container $container
      * @return App|null
      */
-    public static function geiInstance(Container $container)
+    public static function geiInstance($container)
     {
         if(!self::$instance) {
             return new self($container);
@@ -66,16 +66,39 @@ class App
 
     public function start()
     {
-        $builder = new ContainerBuilder();
-        $acclimator = new ContainerAcclimator;
 
-        $phpdi = $acclimator->acclimate($builder->build());
-        $pimple = $acclimator->acclimate(self::$container);
+        $this->dispatch();
 
-        $container = new CompositeContainer([$phpdi, $pimple]);
+        //require_once CONFIG_DIR . '/routes.php';
 
-        require_once CONFIG_DIR . '/routes.php';
+        //Router::dispatch($this->get('request'), $this->get('response'));
+    }
 
-        Router::dispatch($this->get('request'), $this->get('response'));
+    private function dispatch()
+    {
+        $request = self::$container->make('request');
+        $httpMethod = $request->getMethod();
+        $uri = $request->getUriString();
+
+        if (false !== $pos = strpos($uri, '?')) {
+            $uri = substr($uri, 0, $pos);
+        }
+        $uri = rawurldecode($uri);
+
+        $routeInfo = self::$container->make('routes')->dispatch($httpMethod, $uri);
+        switch ($routeInfo[0]) {
+            case \FastRoute\Dispatcher::NOT_FOUND:
+                throw new \Exception("404 Not Found");
+                break;
+            case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+                $allowedMethods = $routeInfo[1];
+                throw new \Exception("405 Method Not Allowed" . $allowedMethods) ;
+                break;
+            case \FastRoute\Dispatcher::FOUND:
+                $handler = $routeInfo[1];
+                $vars = $routeInfo[2];
+                self::$container->call($handler, $vars);
+                break;
+        }
     }
 }

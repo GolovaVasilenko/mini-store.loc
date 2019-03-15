@@ -7,11 +7,12 @@ else {
     ini_set('display_errors', 0);
 }
 
-use Pimple\Container;
 use Core\Application\App;
-$pimple = new Container();
+use DI\ContainerBuilder;
 
-$app = App::geiInstance($pimple);
+$builder = new ContainerBuilder();
+
+$app = App::geiInstance($builder->build());
 
 try {
     $app->start();

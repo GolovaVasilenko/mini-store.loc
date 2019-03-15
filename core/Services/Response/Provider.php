@@ -22,10 +22,7 @@ class Provider extends AbstractServiceProvider
 
     public function init()
     {
-        $this->container[$this->name] = function($c) {
-            $response = new Response();
+        $this->container->set($this->name , \DI\create(Response::class));
 
-            return $response;
-        };
     }
 }
