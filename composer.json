@@ -8,7 +8,9 @@
     ],
     "require": {
         "pimple/pimple": "~3.0",
-        "zendframework/zend-http": "^2.10"
+        "zendframework/zend-http": "^2.10",
+        "acclimate/container": "^2.0",
+        "php-di/php-di": "^6.0"
     },
     "autoload": {
         "psr-4": {

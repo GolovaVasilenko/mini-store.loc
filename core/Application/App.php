@@ -2,7 +2,9 @@
 
 namespace Core\Application;
 
-
+use Acclimate\Container\ContainerAcclimator;
+use Acclimate\Container\CompositeContainer;
+use DI\ContainerBuilder;
 use Core\Components\Router\Router;
 use Pimple\Container;
 
@@ -64,6 +66,14 @@ class App
 
     public function start()
     {
+        $builder = new ContainerBuilder();
+        $acclimator = new ContainerAcclimator;
+
+        $phpdi = $acclimator->acclimate($builder->build());
+        $pimple = $acclimator->acclimate(self::$container);
+
+        $container = new CompositeContainer([$phpdi, $pimple]);
+
         require_once CONFIG_DIR . '/routes.php';
 
         Router::dispatch($this->get('request'), $this->get('response'));

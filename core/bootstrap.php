@@ -9,11 +9,9 @@ else {
 
 use Pimple\Container;
 use Core\Application\App;
+$pimple = new Container();
 
-
-$container = new Container();
-
-$app = App::geiInstance($container);
+$app = App::geiInstance($pimple);
 
 try {
     $app->start();
