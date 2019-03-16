@@ -4,7 +4,7 @@ namespace Core\Model;
 
 use Core\Application\App;
 
-class AbstractModel
+abstract class AbstractModel
 {
     const TABLE = '';
 
@@ -17,7 +17,7 @@ class AbstractModel
      */
     public function __construct()
     {
-        $this->db = App::getInstance()->get('db');
+        $this->db = App::get('db');
         $this->fieldsInit();
     }
 
@@ -156,7 +156,7 @@ class AbstractModel
      */
     public static function find($id)
     {
-        $db = App::getInstance()->get('db');
+        $db = App::get('db');
         $sql = "SELECT * FROM " . static::TABLE . " WHERE id=:id";
 
         $res = $db->query($sql, get_called_class(), ['id' => $id]);
@@ -168,7 +168,7 @@ class AbstractModel
      */
     public static function findAll()
     {
-        $db = App::getInstance()->get('db');
+        $db = App::get('db');
         $sql = "SELECT * FROM " . static::TABLE;
 
         return $db->query($sql, get_called_class());
@@ -181,7 +181,7 @@ class AbstractModel
      */
     public static function findByColumn($column, $value)
     {
-        $db = App::getInstance()->get('db');
+        $db = App::get('db');
         $sql = "SELECT * FROM " . static::TABLE . " WHERE " . $column . "=:" . $column;
 
         $res = $db->query($sql, get_called_class(), [$column => $value]);
@@ -193,7 +193,7 @@ class AbstractModel
      */
     public static function count()
     {
-        $db = App::getInstance()->get('db');
+        $db = App::get('db');
         $sql = "SELECT COUNT(id) AS count FROM " . static::TABLE;
         $res = $db->query($sql, get_called_class());
         return $res[0]->count;
@@ -205,7 +205,7 @@ class AbstractModel
      */
     public static function setQuery($sql, $params = [])
     {
-        $db = App::getInstance()->get('db');
+        $db = App::get('db');
         return $res = $db->query($sql, get_called_class(), $params);
     }
 }

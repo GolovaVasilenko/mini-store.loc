@@ -20,15 +20,13 @@ class App
         self::$container = $container;
 
         $this->setServiceProviders($container);
-
-
     }
 
     /**
      * @param Container $container
      * @return App|null
      */
-    public static function geiInstance($container)
+    public static function getInstance($container)
     {
         if(!self::$instance) {
             return new self($container);
@@ -53,12 +51,11 @@ class App
      * @param $name
      * @return mixed|null
      */
-    public function get($name)
+    public static function get($name)
     {
-        if(isset(self::$container[$name])) {
-            return self::$container[$name];
-        }
-        return null;
+
+       return self::$container->get($name);
+
     }
 
     public function start()

@@ -12,7 +12,7 @@ use DI\ContainerBuilder;
 
 $builder = new ContainerBuilder();
 
-$app = App::geiInstance($builder->build());
+$app = App::getInstance($builder->build());
 
 try {
     $app->start();
