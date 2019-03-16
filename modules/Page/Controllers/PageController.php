@@ -3,10 +3,13 @@
 namespace Modules\Page\Controllers;
 
 
-class PageController
+use Core\Controller\AbstractController;
+
+class PageController extends AbstractController
 {
+
     public function index()
     {
-        echo "Class Page index action";
+        return $this->view->render('page/index.twig', ['name' => 'Fabien']);
     }
 }

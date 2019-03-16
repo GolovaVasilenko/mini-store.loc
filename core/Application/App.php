@@ -68,10 +68,6 @@ class App
         $this->request->setUri($_SERVER['REQUEST_URI']);
 
         $this->dispatch();
-
-        //require_once CONFIG_DIR . '/routes.php';
-
-        //Router::dispatch($this->get('request'), $this->get('response'));
     }
 
     private function dispatch()
@@ -96,7 +92,11 @@ class App
             case \FastRoute\Dispatcher::FOUND:
                 $handler = $routeInfo[1];
                 $vars = $routeInfo[2];
-                self::$container->call($handler, $vars);
+
+                $response = self::$container->make('response');
+                $response->setStatusCode(http_response_code());
+                $response->setContent(self::$container->call($handler, $vars));
+                echo $response->getBody();
                 break;
         }
     }

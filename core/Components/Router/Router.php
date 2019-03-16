@@ -70,9 +70,7 @@ class Router
             $content = "Page Not found Error 404";
         }
 
-        $response->setStatusCode(http_response_code());
-        $response->setContent($content);
-        echo $response->getBody();
+
     }
 
     private static function initController($request)

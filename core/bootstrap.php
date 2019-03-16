@@ -19,4 +19,6 @@ try {
 }
 catch (\Exception $e) {
     echo $e->getMessage();
+}catch (\PDOException $PDOException) {
+    echo $PDOException->getMessage();
 }
