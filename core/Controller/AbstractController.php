@@ -39,4 +39,10 @@ abstract class AbstractController
 
         $this->viewPath = $this->moduleName . '/views';
     }
+
+    public function redirect($path)
+    {
+        header("Location: " . $path);
+        exit;
+    }
 }

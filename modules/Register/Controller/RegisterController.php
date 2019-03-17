@@ -1,31 +1,25 @@
 <?php
 
-
 namespace Modules\Register\Controller;
 
-
-use Core\Components\Auth\AuthComponent;
 use Core\Controller\AbstractController;
-use Core\View\View;
-use Zend\Http\Request;
 
 class RegisterController extends AbstractController
 {
-
     public function index()
     {
-        return $this->view->render('page/register.twig');
+        return $this->view->render('register/register.twig');
     }
 
-    public function registration()
+    public function complete()
     {
-        var_dump($this->request->getPost());
-        die;
         if($this->request->isPost()) {
             $post = $this->request->getPost();
-            $this->auth->registration($post);
+            $userId = $this->auth->registration($post);
+            return $this->view->render('page/register-complete.twig');
         }
-
+        return $this->redirect('/registration');
 
     }
+
 }

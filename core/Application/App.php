@@ -81,6 +81,7 @@ class App
                 break;
             case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
                 $allowedMethods = $routeInfo[1];
+                var_dump($allowedMethods);
                 throw new \Exception("405 Method Not Allowed" . $allowedMethods) ;
                 break;
             case \FastRoute\Dispatcher::FOUND:
