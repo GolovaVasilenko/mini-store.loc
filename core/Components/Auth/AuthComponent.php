@@ -9,14 +9,19 @@ use Core\DB\DbConnect;
 
 class AuthComponent
 {
-    private $auth;
+    protected $auth;
 
-    private $mailer;
+    protected $mailer;
 
     public function __construct(DbConnect $connect, Mailer $mailer)
     {
         $this->auth = new Auth($connect->getDbh());
         $this->mailer = $mailer;
+        return $this->auth;
+    }
+
+    public function getInstance()
+    {
         return $this->auth;
     }
 
