@@ -6,4 +6,5 @@ return [
     Core\Services\Router\Provider::class,
     Core\Services\DB\Provider::class,
     Core\Services\View\Provider::class,
+    Core\Services\Auth\Provider::class,
 ];

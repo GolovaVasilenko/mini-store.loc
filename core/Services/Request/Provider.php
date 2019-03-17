@@ -13,7 +13,7 @@ $request->getPost()->set('foo', 'bar');
 namespace Core\Services\Request;
 
 use Core\Services\AbstractServiceProvider;
-use Zend\Http\Request;
+use Core\Request\Request;
 
 class Provider extends AbstractServiceProvider
 {

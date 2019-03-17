@@ -29,6 +29,7 @@ class DbConnect
         catch(\PDOException $pdoError){
             throw new Errors('Соединение с базой даннных не возможно', (int)$pdoError->getCode( ));
         }
+        return $this->dbh;
     }
 
     /**

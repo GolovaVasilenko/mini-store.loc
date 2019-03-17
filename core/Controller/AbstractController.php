@@ -2,8 +2,9 @@
 
 namespace Core\Controller;
 
+use Core\Application\App;
+use Core\Components\Auth\AuthComponent;
 use Core\View\View;
-use Zend\Http\Request;
 
 abstract class AbstractController
 {
@@ -19,15 +20,16 @@ abstract class AbstractController
 
     protected $controllerName = '';
 
-    public function __construct(View $view, Request $request)
+    protected $auth;
+
+    public function __construct(View $view, AuthComponent $auth)
     {
         $this->controllerName = get_called_class();
         $this->callModuleName();
-        $this->request = $request;
+        $this->request = App::get('request');
         $this->viewObj = $view;
-
+        $this->auth = $auth;
         $this->view = $this->viewObj->getView();
-
     }
 
     private function callModuleName()

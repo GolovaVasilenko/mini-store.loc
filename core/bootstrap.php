@@ -12,6 +12,8 @@ use DI\ContainerBuilder;
 
 $builder = new ContainerBuilder();
 
+//$builder->enableCompilation(ROOT . '/tmp/cache/container');
+
 $app = App::getInstance($builder->build());
 
 try {

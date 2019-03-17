@@ -2,7 +2,6 @@
 
 namespace Modules\Page\Controllers;
 
-
 use Core\Controller\AbstractController;
 
 class PageController extends AbstractController
@@ -12,4 +11,7 @@ class PageController extends AbstractController
     {
         return $this->view->render('page/index.twig', ['name' => 'Fabien']);
     }
+
+
+
 }

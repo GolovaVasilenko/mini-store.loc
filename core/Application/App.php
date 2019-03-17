@@ -53,16 +53,12 @@ class App
      */
     public static function get($name)
     {
-
        return self::$container->get($name);
-
     }
 
     public function start()
     {
-        $this->request = self::$container->make('request');
-        $this->request->setMethod($_SERVER["REQUEST_METHOD"]);
-        $this->request->setUri($_SERVER['REQUEST_URI']);
+        $this->request = self::$container->get('request');
 
         $this->dispatch();
     }
@@ -70,13 +66,14 @@ class App
     private function dispatch()
     {
         $uri = $this->request->getUriString();
+        $method = $this->request->getMethod();
 
         if (false !== $pos = strpos($uri, '?')) {
             $uri = substr($uri, 0, $pos);
         }
         $uri = rawurldecode($uri);
 
-        $routeInfo = self::$container->make('routes')->dispatch($this->request->getMethod(), $uri);
+        $routeInfo = self::$container->get('routes')->dispatch($method, $uri);
 
         switch ($routeInfo[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
@@ -90,7 +87,7 @@ class App
                 $handler = $routeInfo[1];
                 $vars = $routeInfo[2];
 
-                $response = self::$container->make('response');
+                $response = self::$container->get('response');
                 $response->setStatusCode(http_response_code());
                 $response->setContent(self::$container->call($handler, $vars));
                 echo $response->getBody();
