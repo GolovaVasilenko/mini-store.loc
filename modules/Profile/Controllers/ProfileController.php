@@ -13,17 +13,9 @@ class ProfileController extends AbstractController
     public function __construct(View $view, AuthComponent $auth)
     {
         parent::__construct($view, $auth);
-        if ($this->auth->getInstance()->isLoggedIn()) {
-            $this->redirect('/account');
-        }
-        else {
+        if (!$this->auth->getInstance()->isLoggedIn()) {
             $this->redirect('/login');
         }
-    }
-
-    public function index()
-    {
-
     }
 
     public function account()
