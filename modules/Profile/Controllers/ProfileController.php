@@ -2,20 +2,28 @@
 
 namespace Modules\Profile\Controllers;
 
+use Core\Components\Auth\AuthComponent;
 use Core\Controller\AbstractController;
+use Core\View\View;
 
 class ProfileController extends AbstractController
 {
     protected  $idUser;
 
-    public function index()
+    public function __construct(View $view, AuthComponent $auth)
     {
+        parent::__construct($view, $auth);
         if ($this->auth->getInstance()->isLoggedIn()) {
             $this->redirect('/account');
         }
         else {
             $this->redirect('/login');
         }
+    }
+
+    public function index()
+    {
+
     }
 
     public function account()
