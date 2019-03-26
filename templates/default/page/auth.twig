@@ -1,11 +1,15 @@
 {% extends 'base.twig' %}
 
 {% block content %}
-
+<div class="form-auth-wrapper">
     <form action="/signin" method="post">
-        <input type="email" name="email" />
-        <input type="password" name="password" />
-        <input type="submit" value="Login" />
+        <p><input type="email" name="email" placeholder="Email" /></p>
+        <p><input type="password" name="password" placeholder="Password" /></p>
+        <label for="auth-remember">
+            <input id="auth-remember" type="checkbox" name="remember" value="1">
+             <span> Remember me</span>
+        </label>
+        <p><input type="submit" value="Login" /></p>
     </form>
-
+</div>
 {% endblock %}

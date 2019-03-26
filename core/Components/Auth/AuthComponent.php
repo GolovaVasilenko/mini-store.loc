@@ -56,8 +56,15 @@ class AuthComponent
 
     public function login($data)
     {
+        if ($data['remember'] == 1) {
+            // keep logged in for one year
+            $rememberDuration = (int) (60 * 60 * 24 * 7);
+        }
+        else {
+            $rememberDuration = null;
+        }
         try {
-            $this->auth->login($data['email'], $data['password']);
+            $this->auth->login($data['email'], $data['password'], $rememberDuration);
 
             echo 'User is logged in';
         }
